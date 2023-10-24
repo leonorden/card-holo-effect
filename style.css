@@ -258,11 +258,6 @@ html, body {
   transition: opacity 0.3s ease-in; /* Adjust the duration to make the effect slower */
 }
 
-.card:not(hover) .card__layerGrain
-{
-  visibility: visible;
-}
-
 /* .card__layerProfile sideTosideSwing*/
 .card__layerProfile {
   /* Set the animation to be paused initially */

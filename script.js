@@ -25,20 +25,24 @@ el.addEventListener("mousemove", (e) => {
     let bgX = 40 + 20 * X;
     let bgY = 40 + 20 * Y;
 
-    document.documentElement.style.setProperty("--x", 100 * X + "%");
-    document.documentElement.style.setProperty("--y", 100 * Y + "%");
-
-    document.documentElement.style.setProperty("--bg-x", bgX + "%");
-    document.documentElement.style.setProperty("--bg-y", bgY + "%");
-
-    document.documentElement.style.setProperty("--r-x", rX + "deg");
-    document.documentElement.style.setProperty("--r-y", rY + "deg");
+    // Set the card's style properties
+    el.style.setProperty("--x", 100 * X + "%");
+    el.style.setProperty("--y", 100 * Y + "%");
+    el.style.setProperty("--bg-x", bgX + "%");
+    el.style.setProperty("--bg-y", bgY + "%");
+    el.style.setProperty("--r-x", rX + "deg");
+    el.style.setProperty("--r-y", rY + "deg");    
   }
 });
 
 function resetTilt() {
-  document.documentElement.style.setProperty("--r-x", "0deg");
-  document.documentElement.style.setProperty("--r-y", "0deg");
+  // Reset the card's style properties to their default values
+  el.style.setProperty("--x", "50%");
+  el.style.setProperty("--y", "50%");
+  el.style.setProperty("--bg-x", "50%");
+  el.style.setProperty("--bg-y", "50%");
+  el.style.setProperty("--r-x", "0deg");
+  el.style.setProperty("--r-y", "0deg");
 }
 
 // Function to start the shaking animation
@@ -76,14 +80,4 @@ function stopShaking() {
   // Reset the card's position to its original state
   cardLayerProfile.style.transform = "translateX(0)";
 }
-
-
-
-
-
-
-
-
-
-
 
