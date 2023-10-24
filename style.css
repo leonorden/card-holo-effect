@@ -1,0 +1,296 @@
+html, body {
+  height: 100%;
+  margin: 0; 
+  background-color: transparent;
+  display: flex; /* Use flex layout for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+@media screen and (min-width: 600px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+.card {
+  width: 71.5vw;
+  height: 100vw;
+  position: relative;
+}
+
+@media screen and (min-width: 600px) {
+  .card {
+    width: clamp(12.9vw, 61vh, 18vw);
+    height: clamp(18vw, 85vh, 25.2vw);
+  }
+}
+
+:root {
+  --step: 5%;
+  --pattern: url("https://raw.githubusercontent.com/simeydotme/pokemon-cards-css/main/public/img/illusion-mask.png") center / 75%;
+  --pattern1: url("https://assets.codepen.io/13471/sparkles.gif") center / 100%;
+  --pattern2: url("Frame.png") center / 100%;
+  --pattern3: url("LeoCard.jpg") center / 100%;
+  --patternGrain: url("https://raw.githubusercontent.com/simeydotme/pokemon-cards-css/main/public/img/grain.webp") center / 100%;
+
+  --rainbow: repeating-linear-gradient(
+      0deg,
+      rgb(255, 119, 115) calc(var(--step) * 1),
+      rgba(255, 237, 95, 1) calc(var(--step) * 2),
+      rgba(168, 255, 95, 1) calc(var(--step) * 3),
+      rgba(131, 255, 247, 1) calc(var(--step) * 4),
+      rgba(120, 148, 255, 1) calc(var(--step) * 5),
+      rgb(216, 117, 255) calc(var(--step) * 6),
+      rgb(255, 119, 115) calc(var(--step) * 7)
+    )
+    0% var(--bg-y) / 200% 700%;
+  --diagonal: repeating-linear-gradient(
+      128deg,
+      #0e152e 0%,
+      hsl(180, 10%, 60%) 3.8%,
+      hsl(180, 10%, 60%) 4.5%,
+      hsl(180, 10%, 60%) 5.2%,
+      #0e152e 10%,
+      #0e152e 12%
+    )
+    var(--bg-x) var(--bg-y) / 300%;
+  --shade: radial-gradient(
+      farthest-corner circle at var(--x) var(--y),
+      rgba(255, 255, 255, 0.1) 12%,
+      rgba(255, 255, 255, 0.15) 20%,
+      rgba(255, 255, 255, 0.25) 120%
+    )
+    var(--bg-x) var(--bg-y) / 300%;
+    --radius: 16px;
+    --inset: 0px;
+}
+
+.card__wrapper {
+  perspective: 600px;
+  position: absolute;
+  inset: var(--inset);
+}
+.card__3d {
+  transform: rotateY(var(--r-x)) rotateX(var(--r-y));
+  position: absolute;
+  inset: var(--inset);
+  clip-path: inset(0 0 3px 0 round var(--radius));
+}
+.card__image {
+  clip-path: inset(0 0 0 0 round var(--radius));
+}
+.card__image img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* soft light */
+.card__layer1 {
+  position: absolute;
+  inset: var(--inset);
+  z-index: 20;
+  mix-blend-mode: soft-light;
+  clip-path: inset(0 0 1px 0 round var(--radius));
+  background: radial-gradient(
+    farthest-corner circle at var(--x) var(--y),
+    rgba(255, 255, 255, 0.8) 10%,
+    rgba(255, 255, 255, 0.65) 20%,
+    rgba(255, 255, 255, 0) 90%
+  );
+}
+/* first crazy blend  */
+.card__layer2 {
+  position: absolute;
+  inset: var(--inset);
+  z-index: 30;
+
+  mix-blend-mode: soft-light;
+  transition-property: opacity;
+  clip-path: inset(0 0 1px 0 round var(--radius));
+
+  background-blend-mode: hue, hue, hard-light, overlay;
+  background: var(--pattern), var(--rainbow), var(--diagonal);
+}
+/* second crazy blend  */
+.card__layer2:after {
+  content: "";
+  position: absolute;
+  inset: var(--inset);
+  background: var(--pattern), var(--rainbow), var(--diagonal), var(--shade);
+  mix-blend-mode: exclusion;
+  background-size: 75%, 200% 400%, 800%, 200%;
+  background-position: center, 0% var(--bg-y),
+    calc(var(--bg-x) * -1) calc(var(--bg-y) * -1), var(--bg-x) var(--bg-y);
+  background-blend-mode: soft-light, hue, hard-light;
+}
+
+.card__layer3 {
+  position: absolute;
+  inset: var(--inset);
+  z-index: 30;
+
+  mix-blend-mode: screen;
+  transition-property: opacity;
+  clip-path: inset(0 0 1px 0 round var(--radius));
+
+  background-blend-mode: hue, hue, hard-light, overlay;
+  background: var(--pattern1);
+}
+
+.card__layer3:after {
+  content: "";
+  position: absolute;
+  inset: var(--inset);
+  background: var(--pattern1);
+  mix-blend-mode: exclusion;
+  background-size: 75%, 200% 400%, 800%, 200%;
+  background-position: center, 0% var(--bg-y),
+    calc(var(--bg-x) * -1) calc(var(--bg-y) * -1), var(--bg-x) var(--bg-y);
+  background-blend-mode: soft-light, hue, hard-light;
+}
+
+.card__layer4 {
+  margin-bottom: 3px;
+  position: absolute;
+  inset: var(--inset);
+  z-index: 30;
+
+  mix-blend-mode: normal;
+  transition-property: opacity;
+  clip-path: inset(0 0 0 0 round var(--radius));
+
+  background-blend-mode: hue, hue, hard-light, overlay;
+  background: var(--pattern2);
+}
+
+.card__layer4:after {
+  content: "";
+  position: absolute;
+  inset: var(--inset);
+  background: var(--pattern2);
+  mix-blend-mode: normal;
+  background-size: 100%;
+  background-position: center, 0% var(--bg-y),
+    calc(var(--bg-x) * -1) calc(var(--bg-y) * -1), var(--bg-x) var(--bg-y);
+  background-blend-mode: soft-light, hue, hard-light;
+}
+
+.card__layerProfile {
+  position: absolute;
+  inset: var(--inset);
+  z-index: 30;
+
+  mix-blend-mode: normal;
+  transition-property: opacity;
+  clip-path: inset(0 0 0 0 round var(--radius));
+
+  background-blend-mode: hue, hue, hard-light, overlay;
+  background: var(--pattern3);
+}
+
+.card__layerProfile:after {
+  content: "";
+  position: absolute;
+  inset: var(--inset);
+  background: var(--pattern3);
+  mix-blend-mode: normal;
+  background-size: 100%;
+  background-position: center, 0% var(--bg-y),
+    calc(var(--bg-x) * -1) calc(var(--bg-y) * -1), var(--bg-x) var(--bg-y);
+  background-blend-mode: soft-light, hue, hard-light;
+}
+
+.card__layerGrain {
+  position: absolute;
+  inset: var(--inset);
+  z-index: 30;
+
+  mix-blend-mode: soft-light;
+  transition-property: opacity;
+  clip-path: inset(0 0 0 0 round var(--radius));
+
+  background-blend-mode: hue, hue, hard-light, overlay;
+  background: var(--patternGrain);
+
+  filter:contrast(0.6);
+}
+
+.card__layerGrain:after {
+  content: "";
+  position: absolute;
+  inset: var(--inset);
+  background: var(--patternGrain);
+  mix-blend-mode: exclusion;
+  background-size: 100%;
+  background-position: center, 0% var(--bg-y),
+    calc(var(--bg-x) * -1) calc(var(--bg-y) * -1), var(--bg-x) var(--bg-y);
+  background-blend-mode: soft-light, hue, hard-light;
+}
+
+.card__3d:not(:hover) {
+  transition: transform 0.5s ease-in-out; 
+}
+
+.card:not(:hover) .card__layer1,
+.card:not(:hover) .card__layer2,
+.card:not(:hover) .card__layer3
+{
+  visibility: hidden;
+}
+
+.card:hover .card__layerProfile {
+  opacity: 0; /* To hide the element when hovering */
+  transition: opacity 0.3s ease-in; /* Adjust the duration to make the effect slower */
+}
+
+.card:not(:hover) .card__layerProfile {
+  opacity: 1; /* To show the element when not hovering */
+  transition: opacity 0.3s ease-in; /* Adjust the duration to make the effect slower */
+}
+
+.card:not(hover) .card__layerGrain
+{
+  visibility: visible;
+}
+
+/* .card__layerProfile sideTosideSwing*/
+.card__layerProfile {
+  /* Set the animation to be paused initially */
+  animation: shake 5s ease infinite paused;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  20% {
+    transform: translateX(-6px);
+  }
+  40% {
+    transform: translateX(6px);
+  }
+  60% {
+    transform: translateX(-6px);
+  }
+  80% {
+    transform: translateX(6px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.card__layerProfile.shaking {
+  /* Remove the "paused" state to start the animation */
+  animation-play-state: running;
+}
