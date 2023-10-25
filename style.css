@@ -35,7 +35,7 @@ html, body {
 }
 
 :root {
-  --pattern: url("https://raw.githubusercontent.com/simeydotme/pokemon-cards-css/main/public/img/trainerbg.png") center / 75%;
+  --pattern: url("https://raw.githubusercontent.com/simeydotme/pokemon-cards-css/main/public/img/trainerbg.jpg") center / 75%;
   --pattern1: url("https://assets.codepen.io/13471/sparkles.gif") center / 100%;
   --pattern2: url("Frame.png") center / 100%;
   --pattern3: url("LeoCard.jpg") center / 100%;
@@ -134,7 +134,7 @@ html, body {
   position: absolute;
   inset: var(--inset);
   z-index: 40; 
-  clip-path: inset(0 0 129px 0 round var(--radius));
+  clip-path: inset(0 0 130px 0 round var(--radius));
   background: url("CardMeBackgroundRemoved.png") center / cover; 
 } 
 
