@@ -36,7 +36,7 @@ html, body {
 
 :root {
   --step: 5%;
-  --pattern: url("https://raw.githubusercontent.com/simeydotme/pokemon-cards-css/main/public/img/illusion-mask.png") center / 75%;
+  --pattern: url("https://raw.githubusercontent.com/simeydotme/pokemon-cards-css/main/public/img/ancient.png") center / 75%;
   --pattern1: url("https://assets.codepen.io/13471/sparkles.gif") center / 100%;
   --pattern2: url("Frame.png") center / 100%;
   --pattern3: url("LeoCard.jpg") center / 100%;
@@ -99,7 +99,7 @@ html, body {
   position: absolute;
   inset: var(--inset);
   z-index: 20;
-  mix-blend-mode: soft-light;
+  mix-blend-mode: exclusion;
   clip-path: inset(0 0 1px 0 round var(--radius));
   background: radial-gradient(
     farthest-corner circle at var(--x) var(--y),
@@ -108,31 +108,32 @@ html, body {
     rgba(255, 255, 255, 0) 90%
   );
 }
-/* first crazy blend  */
+
 .card__layer2 {
   position: absolute;
   inset: var(--inset);
   z-index: 30;
 
-  mix-blend-mode: soft-light;
+  mix-blend-mode: hard-light;
   transition-property: opacity;
   clip-path: inset(0 0 1px 0 round var(--radius));
 
   background-blend-mode: hue, hue, hard-light, overlay;
-  background: var(--pattern), var(--rainbow), var(--diagonal);
+  background: var(--pattern);
 }
-/* second crazy blend  */
+
 .card__layer2:after {
   content: "";
   position: absolute;
   inset: var(--inset);
-  background: var(--pattern), var(--rainbow), var(--diagonal), var(--shade);
+  background: var(--pattern);
   mix-blend-mode: exclusion;
   background-size: 75%, 200% 400%, 800%, 200%;
   background-position: center, 0% var(--bg-y),
     calc(var(--bg-x) * -1) calc(var(--bg-y) * -1), var(--bg-x) var(--bg-y);
   background-blend-mode: soft-light, hue, hard-light;
 }
+
 
 .card__layer3 {
   position: absolute;
@@ -144,7 +145,9 @@ html, body {
   clip-path: inset(0 0 1px 0 round var(--radius));
 
   background-blend-mode: hue, hue, hard-light, overlay;
-  background: var(--pattern1);
+  /* background: var(--pattern1); */
+  background: var(--pattern1), url("CardMeBackgroundRemoved.png") center / cover; /* Include the image here */
+
 }
 
 .card__layer3:after {
@@ -159,7 +162,15 @@ html, body {
   background-blend-mode: soft-light, hue, hard-light;
 }
 
-.card__layer4 {
+.card__layerImage {
+  position: absolute;
+  inset: var(--inset);
+  z-index: 40; 
+  clip-path: inset(0 0 128.5px 0 round var(--radius));
+  background: url("CardMeBackgroundRemoved.png") center / cover; 
+} 
+
+.card__layerFrame {
   margin-bottom: 3px;
   position: absolute;
   inset: var(--inset);
@@ -173,7 +184,7 @@ html, body {
   background: var(--pattern2);
 }
 
-.card__layer4:after {
+.card__layerFrame:after {
   content: "";
   position: absolute;
   inset: var(--inset);
@@ -243,7 +254,8 @@ html, body {
 
 .card:not(:hover) .card__layer1,
 .card:not(:hover) .card__layer2,
-.card:not(:hover) .card__layer3
+.card:not(:hover) .card__layer3,
+.card:not(:hover) .card__layerImage
 {
   visibility: hidden;
 }
