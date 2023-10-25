@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
  
   const el = document.querySelector(".card");
-  const layer2 = document.querySelector(".card__layer2");
   let w = el.clientWidth;
   let h = el.clientHeight;
   let b = el.getBoundingClientRect();
@@ -9,13 +8,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   el.addEventListener("mouseenter", () => {
     isHovering = true;
-    layer2.classList.add("show-layer2");
   });
 
   el.addEventListener("mouseleave", () => {
     isHovering = false;
     resetTilt();
-    layer2.classList.remove("show-layer2");
   });
 
   el.addEventListener("mousemove", (e) => {
@@ -35,7 +32,13 @@ document.addEventListener("DOMContentLoaded", function () {
       el.style.setProperty("--bg-x", bgX + "%");
       el.style.setProperty("--bg-y", bgY + "%");
       el.style.setProperty("--r-x", rX + "deg");
-      el.style.setProperty("--r-y", rY + "deg");    
+      el.style.setProperty("--r-y", rY + "deg");
+
+      // Show layer2 when tilted
+      showLayer2();
+    } else {
+      // Hide layer2 when not tilted
+      hideLayer2();
     }
   });
 
@@ -47,6 +50,19 @@ document.addEventListener("DOMContentLoaded", function () {
     el.style.setProperty("--bg-y", "50%");
     el.style.setProperty("--r-x", "0deg");
     el.style.setProperty("--r-y", "0deg");
+
+    // Hide layer2 when not tilted
+    hideLayer2();
+  }
+
+  function showLayer2() {
+    const layer2 = document.querySelector(".card__layer2");
+    layer2.style.visibility = "visible";
+  }
+
+  function hideLayer2() {
+    const layer2 = document.querySelector(".card__layer2");
+    layer2.style.visibility = "hidden";
   }
 
   // Function to start the shaking animation
