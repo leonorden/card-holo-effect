@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
  
   const el = document.querySelector(".card");
-  const wrap = document.querySelector(".card__wrapper");
+  const layer2 = document.querySelector(".card__layer2");
   let w = el.clientWidth;
   let h = el.clientHeight;
   let b = el.getBoundingClientRect();
@@ -9,11 +9,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   el.addEventListener("mouseenter", () => {
     isHovering = true;
+    layer2.classList.add("show-layer2");
   });
 
   el.addEventListener("mouseleave", () => {
     isHovering = false;
     resetTilt();
+    layer2.classList.remove("show-layer2");
   });
 
   el.addEventListener("mousemove", (e) => {
