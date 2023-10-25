@@ -134,7 +134,7 @@ html, body {
   position: absolute;
   inset: var(--inset);
   z-index: 40; 
-  clip-path: inset(0 0 130px 0 round var(--radius));
+  clip-path: inset(0 0 132px 0 round var(--radius));
   background: url("CardMeBackgroundRemoved.png") center / cover; 
 } 
 
