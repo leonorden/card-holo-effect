@@ -211,13 +211,8 @@ html, body {
   transition: opacity 0.3s ease-in; 
 }
 
-/* .card__layerProfile sideTosideSwing*/
-.card__layerProfile {
-  /* Set the animation to be paused initially */
-  animation: shake 5s ease infinite paused;
-}
-
-@keyframes shake {
+/* This is controlled in script.js*/
+@keyframes swing {
   0% {
     transform: translateX(0);
   }
@@ -238,7 +233,4 @@ html, body {
   }
 }
 
-.card__layerProfile.shaking {
-  /* Remove the "paused" state to start the animation */
-  animation-play-state: running;
-}
+
