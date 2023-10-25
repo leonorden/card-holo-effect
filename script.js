@@ -32,13 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
       el.style.setProperty("--bg-x", bgX + "%");
       el.style.setProperty("--bg-y", bgY + "%");
       el.style.setProperty("--r-x", rX + "deg");
-      el.style.setProperty("--r-y", rY + "deg");
-
-      // Show layer2 when tilted
-      showLayer2();
-    } else {
-      // Hide layer2 when not tilted
-      hideLayer2();
+      el.style.setProperty("--r-y", rY + "deg");    
     }
   });
 
@@ -50,19 +44,6 @@ document.addEventListener("DOMContentLoaded", function () {
     el.style.setProperty("--bg-y", "50%");
     el.style.setProperty("--r-x", "0deg");
     el.style.setProperty("--r-y", "0deg");
-
-    // Hide layer2 when not tilted
-    hideLayer2();
-  }
-
-  function showLayer2() {
-    const layer2 = document.querySelector(".card__layer2");
-    layer2.style.visibility = "visible";
-  }
-
-  function hideLayer2() {
-    const layer2 = document.querySelector(".card__layer2");
-    layer2.style.visibility = "hidden";
   }
 
   // Function to start the shaking animation
