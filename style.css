@@ -114,7 +114,7 @@ html, body {
   clip-path: inset(0 0 1px 0 round var(--radius));
 
   background-blend-mode: hue, hue, hard-light, overlay;
-  background: var(--pattern1), url("CardMeBackgroundRemoved.png") center / cover; 
+  background: var(--pattern1); 
 
 }
 
