@@ -36,7 +36,7 @@ html, body {
 
 :root {
   --pattern: url("https://raw.githubusercontent.com/simeydotme/pokemon-cards-css/main/public/img/ancient.png") center / 75%;
-  --pattern1: url("https://assets.codepen.io/13471/sparkles.gif") center / 100%;
+  --pattern1: url("https://assets.codepen.io/13471/sparkles.gif") center / 75%;
   --pattern2: url("Frame.png") center / 100%;
   --pattern3: url("LeoCard.jpg") center / 100%;
 
@@ -68,9 +68,9 @@ html, body {
 .card__layer1 {
   position: absolute;
   inset: var(--inset);
-  z-index: 20;
+  z-index: 2;
   mix-blend-mode: exclusion;
-  clip-path: inset(0 0 1px 0 round var(--radius));
+  clip-path: inset(0 0 0 0 round var(--radius));
   background: radial-gradient(
     farthest-corner circle at var(--x) var(--y),
     rgba(255, 255, 255, 0.8) 10%,
@@ -82,12 +82,12 @@ html, body {
 .card__layer2 {
   position: absolute;
   inset: var(--inset);
-  z-index: 30;
+  z-index: 2;
 
   mix-blend-mode: color-burn;
   transition-property: opacity;
   clip-path: inset(0 0 1px 0 round var(--radius));
-
+  background-size: 75%, 200% 400%, 800%, 200%;
   background-blend-mode: hue, hue, hard-light, overlay;
   background: var(--pattern);
 }
@@ -107,7 +107,7 @@ html, body {
 .card__layer3 {
   position: absolute;
   inset: var(--inset);
-  z-index: 30;
+  z-index: 3;
 
   mix-blend-mode: screen;
   transition-property: opacity;
@@ -123,7 +123,7 @@ html, body {
   position: absolute;
   inset: var(--inset);
   background: var(--pattern1);
-  mix-blend-mode: exclusion;
+  mix-blend-mode: hard-light;
   background-size: 75%, 200% 400%, 800%, 200%;
   background-position: center, 0% var(--bg-y),
     calc(var(--bg-x) * -1) calc(var(--bg-y) * -1), var(--bg-x) var(--bg-y);
@@ -133,7 +133,7 @@ html, body {
 .card__layerImage {
   position: absolute;
   inset: var(--inset);
-  z-index: 40; 
+  z-index: 4; 
   clip-path: inset(0 0 128.5px 0 round var(--radius));
   background: url("CardMeBackgroundRemoved.png") center / cover; 
 } 
@@ -142,7 +142,7 @@ html, body {
   margin-bottom: 3px;
   position: absolute;
   inset: var(--inset);
-  z-index: 30;
+  z-index: 3;
 
   mix-blend-mode: normal;
   transition-property: opacity;
@@ -167,7 +167,7 @@ html, body {
 .card__layerProfile {
   position: absolute;
   inset: var(--inset);
-  z-index: 30;
+  z-index: 3;
 
   mix-blend-mode: normal;
   transition-property: opacity;
@@ -189,16 +189,26 @@ html, body {
   background-blend-mode: soft-light, hue, hard-light;
 }
 
+
 .card__3d:not(:hover) {
   transition: transform 0.5s ease-in-out; 
 }
 
 .card:not(:hover) .card__layer1,
 .card:not(:hover) .card__layer2,
-.card:not(:hover) .card__layer3,
-.card:not(:hover) .card__layerImage
+.card:not(:hover) .card__layer3
 {
   visibility: hidden;
+}
+
+.card:hover .card__layerImage {
+  opacity: 1; 
+  transition: opacity 0.3s ease-in; 
+}
+
+.card:not(:hover) .card__layerImage {
+  opacity: 0; 
+  transition: opacity 0.3s ease-in; 
 }
 
 .card:hover .card__layerProfile {
