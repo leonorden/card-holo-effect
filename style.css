@@ -135,15 +135,16 @@ html, body {
   position: absolute;
   inset: var(--inset);
   z-index: 4; 
-  clip-path: inset(0 0 128.5px 0 round var(--radius));
-  background: url("CardMeBackgroundRemoved.png") center / cover; 
+  clip-path: inset(0 0 1px 0 round var(--radius));
+  background: url("CardMeBackgroundRemoved.png") center / cover;
+  
 } 
 
 .card__layerFrame {
   margin-bottom: 3px;
   position: absolute;
   inset: var(--inset);
-  z-index: 3;
+  z-index: 4;
 
   mix-blend-mode: normal;
   transition-property: opacity;
@@ -168,7 +169,7 @@ html, body {
 .card__layerProfile {
   position: absolute;
   inset: var(--inset);
-  z-index: 3;
+  z-index: 5;
 
   mix-blend-mode: normal;
   transition-property: opacity;
